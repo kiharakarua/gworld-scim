@@ -1,8 +1,6 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.service.base.Attribute;
-import com.iamgusto.users.service.base.DatetimeAttr;
-import com.iamgusto.users.service.base.SimpleAttr;
+import com.iamgusto.users.model.Attribute;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +13,7 @@ public class MetaAttributes {
             true,
             Collections.emptyList(),
             true,
-            Attribute.Mutability.READ_ONLY,
+            Attribute.Mutability.readOnly,
             Attribute.Returned.DEFAULT,
             Attribute.Uniqueness.NONE);
 
@@ -23,13 +21,13 @@ public class MetaAttributes {
             false,
             "The \"DateTime\" that the resource was added to the service provider.",
             true,
-            Attribute.Mutability.READ_ONLY,
+            Attribute.Mutability.readOnly,
             Attribute.Returned.DEFAULT);
     public static final Attribute LAST_MODIFIED = new DatetimeAttr("lastModified",
             false,
             "The \"DateTime\" that the resource was added to the service provider.",
             true,
-            Attribute.Mutability.READ_ONLY,
+            Attribute.Mutability.readOnly,
             Attribute.Returned.DEFAULT);
 
     public static final Attribute LOCATION = new SimpleAttr("location",
@@ -39,7 +37,7 @@ public class MetaAttributes {
             true,
             Collections.emptyList(),
             false,
-            Attribute.Mutability.READ_ONLY,
+            Attribute.Mutability.readOnly,
             Attribute.Returned.DEFAULT,
             Attribute.Uniqueness.NONE);
 
@@ -51,7 +49,7 @@ public class MetaAttributes {
             false,
             Collections.emptyList(),
             true,
-            Attribute.Mutability.READ_ONLY,
+            Attribute.Mutability.readOnly,
             Attribute.Returned.DEFAULT,
             Attribute.Uniqueness.NONE);
 

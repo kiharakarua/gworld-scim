@@ -1,28 +1,44 @@
-package com.iamgusto.users.service.base;
+package com.iamgusto.users.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 import java.util.Set;
 
 public class Attribute {
+    @JsonProperty("name")
     private final String name;
+    @JsonProperty("type")
     private final Type type;
+    @JsonProperty("subAttributes")
     private final Set<Attribute> subAttributes;
+    @JsonProperty("multiValued")
     private final boolean multiValued;
+    @JsonProperty("description")
     private final String description;
+    @JsonProperty("required")
     private final boolean required;
+    @JsonProperty("canonicalValues")
 
     private final List<String> canonicalValues;
 
+    @JsonProperty("caseExact")
     private final boolean caseExact;
 
+    @JsonProperty("mutability")
     private final Mutability mutability;
 
+    @JsonProperty("returned")
     private final Returned returned;
 
+    @JsonProperty("uniqueness")
     private final Uniqueness uniqueness;
+    @JsonProperty("referenceTypes")
 
     private final List<String> referenceTypes;
 
+    @JsonCreator
     public Attribute(String name, Type type, Set<Attribute> subAttributes, boolean multiValued, String description, boolean required, List<String> canonicalValues, boolean caseExact, Mutability mutability, Returned returned, Uniqueness uniqueness, List<String> referenceTypes) {
         this.name = name;
         this.type = type;
@@ -36,6 +52,54 @@ public class Attribute {
         this.returned = returned;
         this.uniqueness = uniqueness;
         this.referenceTypes = referenceTypes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Set<Attribute> getSubAttributes() {
+        return subAttributes;
+    }
+
+    public boolean isMultiValued() {
+        return multiValued;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isRequired() {
+        return required;
+    }
+
+    public List<String> getCanonicalValues() {
+        return canonicalValues;
+    }
+
+    public boolean isCaseExact() {
+        return caseExact;
+    }
+
+    public Mutability getMutability() {
+        return mutability;
+    }
+
+    public Returned getReturned() {
+        return returned;
+    }
+
+    public Uniqueness getUniqueness() {
+        return uniqueness;
+    }
+
+    public List<String> getReferenceTypes() {
+        return referenceTypes;
     }
 
     public static enum Type {
@@ -73,7 +137,7 @@ public class Attribute {
          * above and are represented as a JSON string per Section 7 of
          * [RFC7159].
          */
-        DATE_TIME,
+        dateTime,
         /**
          * A URI for a resource.  A resource MAY be a SCIM resource, an external
          * link to a resource (e.g., a photo), or an identifier such as a URN.
@@ -86,19 +150,20 @@ public class Attribute {
          * one or more simple attributes. The order of the component attributes is not
          * significant.
          */
-        COMPLEX
+        COMPLEX,
+        BINARY
     }
 
     public static enum Mutability {
         /**
          * The attribute SHALL NOT be modified.
          */
-        READ_ONLY,
+        readOnly,
         /**
          * The attribute MAY be updated and read at any time.
          * This is the default value.
          */
-        READ_WRITE,
+        readWrite,
         /**
          * The attribute MAY be defined at resource creation
          * (e.g., POST) or at record replacement via a request (e.g., a
@@ -111,7 +176,7 @@ public class Attribute {
          * stored hash).  Note: An attribute with a mutability of
          * "writeOnly" usually also has a returned setting of "never".
          */
-        WRITE_ONLY
+        writeOnly
     }
 
     public static enum Returned {

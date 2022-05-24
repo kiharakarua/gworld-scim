@@ -1,7 +1,7 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.service.base.Attribute;
-import com.iamgusto.users.service.base.Schema;
+import com.iamgusto.users.model.Attribute;
+import com.iamgusto.users.model.Schema;
 
 import java.util.ArrayList;
 import java.util.List;

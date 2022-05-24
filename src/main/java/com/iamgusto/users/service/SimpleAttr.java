@@ -1,4 +1,6 @@
-package com.iamgusto.users.service.base;
+package com.iamgusto.users.service;
+
+import com.iamgusto.users.model.Attribute;
 
 import java.util.Collections;
 import java.util.List;

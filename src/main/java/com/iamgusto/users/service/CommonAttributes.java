@@ -1,8 +1,6 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.service.base.Attribute;
-import com.iamgusto.users.service.base.ComplexAttr;
-import com.iamgusto.users.service.base.SimpleAttr;
+import com.iamgusto.users.model.Attribute;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +14,7 @@ public class CommonAttributes {
             true,
             Collections.emptyList(),
             true,
-            Attribute.Mutability.READ_ONLY,
+            Attribute.Mutability.readOnly,
             Attribute.Returned.ALWAYS,
             Attribute.Uniqueness.SERVER);
 
@@ -27,7 +25,7 @@ public class CommonAttributes {
             false,
             Collections.emptyList(),
             true,
-            Attribute.Mutability.READ_WRITE,
+            Attribute.Mutability.readWrite,
             Attribute.Returned.DEFAULT,
             Attribute.Uniqueness.NONE);
 

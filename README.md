@@ -50,7 +50,7 @@ If you want to learn more about building native executables, please consult http
 ## Related Guides
 
 - Hibernate Validator ([guide](https://quarkus.io/guides/validation)): Validate object properties (field, getter) and method parameters for your beans (REST, CDI, JPA)
-- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A JAX-RS implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
+- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A JAX-RS implementation utilizing build time processing and Vert.x. This schemaExtension is not compatible with the quarkus-resteasy schemaExtension, or any of the extensions that depend on it.
 - OpenTelemetry ([guide](https://quarkus.io/guides/opentelemetry)): Use OpenTelemetry to trace services
 - OpenTelemetry exporter: OTLP ([guide](https://quarkus.io/guides/opentelemetry)): Enable OTLP Exporter for OpenTelemetry
 - Logging JSON ([guide](https://quarkus.io/guides/logging#json-logging)): Add JSON formatter for console logging
