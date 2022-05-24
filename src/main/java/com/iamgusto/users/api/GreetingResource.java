@@ -1,4 +1,4 @@
-package com.iamgusto.users;
+package com.iamgusto.users.api;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

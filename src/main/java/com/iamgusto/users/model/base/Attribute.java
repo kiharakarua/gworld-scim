@@ -1,4 +1,4 @@
-package com.iamgusto.users.model;
+package com.iamgusto.users.model.base;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

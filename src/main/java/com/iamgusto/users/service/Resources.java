@@ -1,16 +1,22 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.model.CoreResource;
-
+import com.iamgusto.users.api.ResourceTypeApi.ExistsException;
+import com.iamgusto.users.model.base.BaseScimResource;
+import com.iamgusto.users.model.base.serviceprovider.ResourceType;
 import java.util.List;
 import java.util.Optional;
 
 public class Resources {
-    public Optional<CoreResource.BaseCoreResource> fetch(String id) {
-        return null;
-    }
 
-    public List<CoreResource.BaseCoreResource> fetch() {
-        return null;
-    }
+  public Optional<BaseScimResource> fetch(String id) {
+    return null;
+  }
+
+  public List<BaseScimResource> fetch() {
+    return null;
+  }
+
+  public ResourceType create(ResourceType resourceType) throws ExistsException {
+    return null;
+  }
 }

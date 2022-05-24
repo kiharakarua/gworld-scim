@@ -1,6 +1,6 @@
-package com.iamgusto.users.api;
+package com.iamgusto.users.api.utils;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,7 +9,7 @@ import javax.ws.rs.HeaderParam;
 import java.util.List;
 import java.util.Locale;
 
-@RequestScoped
+@Dependent
 public class RequestLocale {
 
     @HeaderParam("Accept-Language")
@@ -21,7 +21,7 @@ public class RequestLocale {
 
     @Produces
     @Named("request.locale")
-    @RequestScoped
+    @Dependent
     public Locale getLocale() {
         List<Locale.LanguageRange> languageRanges = Locale.LanguageRange.parse(languages);
         return Locale.lookup(languageRanges, supportedLocales.getLocales());
