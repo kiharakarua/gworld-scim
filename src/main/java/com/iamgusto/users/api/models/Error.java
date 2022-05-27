@@ -1,8 +1,8 @@
-package com.iamgusto.users.model;
+package com.iamgusto.users.api.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.iamgusto.users.model.base.ScimMessage;
+import com.iamgusto.users.model.ScimMessage;
 import java.util.Collections;
 import java.util.Set;
 

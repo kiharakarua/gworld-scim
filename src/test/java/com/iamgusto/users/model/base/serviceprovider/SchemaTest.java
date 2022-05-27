@@ -2,6 +2,7 @@ package com.iamgusto.users.model.base.serviceprovider;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.iamgusto.users.data.Schema;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 

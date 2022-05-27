@@ -1,10 +1,13 @@
 package com.iamgusto.users.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iamgusto.users.api.utils.HttpMessages;
-import com.iamgusto.users.model.ListResponse;
-import com.iamgusto.users.model.base.serviceprovider.Schema;
+import com.iamgusto.users.api.models.ListResponse;
+import com.iamgusto.users.data.Schema;
+import com.iamgusto.users.service.Page;
 import com.iamgusto.users.service.Schemas;
 import java.net.URI;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
@@ -17,12 +20,18 @@ public class SchemaApi {
   Schemas schemas;
 
   HttpMessages messages;
+  @Inject
+  ObjectMapper objectMapper;
 
   @GET
   @Path("/")
   public ListResponse getMany(@QueryParam("startIndex") int start, @QueryParam("count") int count,
       @QueryParam("filter") String filter, @QueryParam("sort") String sort) {
-    return schemas.get();
+    Page<Schema> schemaPage = schemas.get(start, count);
+    return new ListResponse(schemaPage.getTotalResults(),
+        schemaPage.getStartIndex(),
+        schemaPage.getItemsPerPage(),
+        objectMapper.valueToTree(schemaPage.getItems()));
   }
 
   @GET

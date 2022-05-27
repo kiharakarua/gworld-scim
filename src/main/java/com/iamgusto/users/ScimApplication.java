@@ -3,7 +3,7 @@ package com.iamgusto.users;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iamgusto.users.data.WriteException;
-import com.iamgusto.users.model.base.serviceprovider.ResourceType;
+import com.iamgusto.users.data.ResourceType;
 import com.iamgusto.users.service.Provisioner;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;

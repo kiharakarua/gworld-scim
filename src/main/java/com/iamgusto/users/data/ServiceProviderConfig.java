@@ -1,13 +1,13 @@
-package com.iamgusto.users.model.base.serviceprovider;
+package com.iamgusto.users.data;
 
-import com.iamgusto.users.model.base.BaseScimResource;
+import com.iamgusto.users.model.BaseScimResource;
 import java.util.Collections;
 import java.util.Set;
 
 public class ServiceProviderConfig extends BaseScimResource {
 
   public ServiceProviderConfig() {
-    super(null);
+    super(null, null);
   }
 
   @Override

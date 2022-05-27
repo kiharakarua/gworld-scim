@@ -1,29 +1,28 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.model.base.Attribute;
-import com.iamgusto.users.model.base.serviceprovider.Schema;
+import com.iamgusto.users.data.SchemaRepo;
+import com.iamgusto.users.model.Attribute;
+import com.iamgusto.users.data.Schema;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
+@ApplicationScoped
 public class Schemas {
 
-  private static final List<Attribute> userAttributes = new ArrayList<>();
-  public static final Schema USER = new Schema("urn:ietf:params:scim:schemas:core:2.0:User",
-      "User",
-      "The user schema as defined by scim2",
-      userAttributes);
-
-  static {
-    userAttributes.addAll(CommonAttributes.all());
-  }
+  @Inject
+  SchemaRepo schemaRepo;
 
   public Optional<Schema> get(URI uri) {
-    return Optional.empty();
+    return schemaRepo.findByIdOptional(uri.toString());
   }
 
-  public Page<Schema> get() {
-    return null;
+  public Page<Schema> get(int start, int count) {
+    long total = schemaRepo.findAll().count();
+    List<Schema> list = schemaRepo.findAll().range(start, start + count - 1).list();
+    return new Page<>(count, total, start, list);
   }
 }

@@ -1,4 +1,4 @@
-package com.iamgusto.users.model.base;
+package com.iamgusto.users.model;
 
 public interface ScimMessage extends ScimObject {
 

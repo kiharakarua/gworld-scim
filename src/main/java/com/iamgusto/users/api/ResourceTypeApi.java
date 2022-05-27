@@ -1,8 +1,8 @@
 package com.iamgusto.users.api;
 
 import com.iamgusto.users.api.utils.HttpMessages;
-import com.iamgusto.users.model.base.BaseScimResource;
-import com.iamgusto.users.model.base.serviceprovider.ResourceType;
+import com.iamgusto.users.model.BaseScimResource;
+import com.iamgusto.users.data.ResourceType;
 import com.iamgusto.users.service.ResourceTypes;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;

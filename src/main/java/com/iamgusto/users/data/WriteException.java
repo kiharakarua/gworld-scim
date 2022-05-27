@@ -1,10 +1,8 @@
 package com.iamgusto.users.data;
 
-import java.io.IOException;
-
 public class WriteException extends Throwable {
 
-  public WriteException(IOException e) {
+  public WriteException(Exception e) {
     super(e);
   }
 }

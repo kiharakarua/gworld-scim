@@ -1,22 +1,34 @@
-package com.iamgusto.users.model.base;
+package com.iamgusto.users.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iamgusto.users.utils.TimeUtils;
 import java.util.Objects;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 public abstract class BaseScimResource implements ScimResource {
 
-  @JsonProperty("_id")
-  protected final String id;
+  @JsonProperty("id")
+  protected String id;
+
   protected String externalId;
+
   protected Meta meta;
 
-  public BaseScimResource(String id) {
+  public BaseScimResource() {
+  }
+
+  public BaseScimResource(String id, Meta meta) {
     this.id = id;
   }
 
   @Override
   public String getId() {
     return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   @Override
@@ -31,6 +43,21 @@ public abstract class BaseScimResource implements ScimResource {
   @Override
   public Meta getMeta() {
     return meta;
+  }
+
+  @PrePersist
+  public void prePersist() {
+    Meta meta1 = getMeta();
+    meta1.setCreated(TimeUtils.now());
+    meta1.setLastModifiedAt(TimeUtils.now());
+  }
+
+  @PreUpdate
+  public void preUpdate() {
+    Meta meta1 = getMeta();
+    if (meta1 != null) {
+      meta1.setLastModifiedAt(TimeUtils.now());
+    }
   }
 
   public void setMeta(Meta meta) {

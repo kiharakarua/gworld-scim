@@ -1,7 +1,7 @@
-package com.iamgusto.users.model;
+package com.iamgusto.users.api.models;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.iamgusto.users.model.base.ScimMessage;
+import com.iamgusto.users.model.ScimMessage;
 import java.util.List;
 import java.util.Set;
 

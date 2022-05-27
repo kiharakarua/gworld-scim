@@ -1,8 +1,13 @@
-package com.iamgusto.users.model.base;
+package com.iamgusto.users.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.iamgusto.users.utils.TimeUtils;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 public interface ScimResource extends ScimObject {
 
@@ -12,11 +17,19 @@ public interface ScimResource extends ScimObject {
 
   Meta getMeta();
 
+  @Embeddable
   public static class Meta {
 
+    @Column(name = "resource_type")
     private String resourceType;
+    @Column(name = "location")
     private String location;
+    @CreationTimestamp
+    @Column(name = "created_on")
     private LocalDateTime created;
+
+    @UpdateTimestamp
+    @Column(name = "last_modified_at")
     private LocalDateTime lastModifiedAt;
 
     @JsonCreator
@@ -24,13 +37,17 @@ public interface ScimResource extends ScimObject {
         LocalDateTime lastModifiedAt) {
       this.resourceType = resourceType;
       this.location = location;
-      this.created = created;
-      this.lastModifiedAt = lastModifiedAt;
+      this.created = Objects.requireNonNullElse(created, TimeUtils.now());
+      this.lastModifiedAt = Objects.requireNonNullElse(lastModifiedAt, TimeUtils.now());
     }
 
     public Meta(String resourceType, String location) {
       this.resourceType = resourceType;
       this.location = location;
+      this.created = TimeUtils.now();
+    }
+
+    public Meta() {
     }
 
     public String getResourceType() {

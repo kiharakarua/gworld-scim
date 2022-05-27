@@ -3,12 +3,9 @@ package com.iamgusto.users.data;
 import static org.apache.tinkerpop.gremlin.process.traversal.AnonymousTraversalSource.traversal;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iamgusto.users.model.base.BaseScimResource;
-import com.iamgusto.users.model.base.ScimResource.Meta;
-import com.iamgusto.users.model.base.serviceprovider.ResourceType;
-import com.iamgusto.users.model.base.serviceprovider.Schema;
+import com.iamgusto.users.model.BaseScimResource;
+import com.iamgusto.users.model.ScimResource.Meta;
 import com.iamgusto.users.utils.TimeUtils;
 import com.lambdazen.bitsy.BitsyGraph;
 import com.lambdazen.bitsy.wrapper.BitsyAutoReloadingGraph;
@@ -21,18 +18,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
-public class DataWriter {
+public class GraphRepo {
 
   @Inject
   ObjectMapper objectMapper;
@@ -62,7 +57,8 @@ public class DataWriter {
     if (schemas.isEmpty()) {
       return;
     }
-    final Vertex schemaV = g.V().has("schema", "_id", "urn:ietf:params:scim:schemas:core:2.0:Schema")
+    final Vertex schemaV = g.V()
+        .has("schema", "_id", "urn:ietf:params:scim:schemas:core:2.0:Schema")
         .next();
 
     final Schema schema = updateMetaCreation(schemas.get(0));
@@ -77,7 +73,8 @@ public class DataWriter {
   }
 
   public void createSchema(Schema schema) {
-    final Vertex schemaV = g.V().has("schema", "_id", "urn:ietf:params:scim:schemas:core:2.0:Schema")
+    final Vertex schemaV = g.V()
+        .has("schema", "_id", "urn:ietf:params:scim:schemas:core:2.0:Schema")
         .next();
 
     schema = updateMetaCreation(schema);
@@ -124,10 +121,6 @@ public class DataWriter {
 
   public boolean isInit() {
     return g.V().hasLabel("app-config").<Boolean>values("init").next();
-  }
-
-  public JsonNode loadInfo(String type,){
-    g.V();
   }
 
   public void storeResourceTypes(Set<ResourceType> resourceTypes) {

@@ -1,6 +1,6 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.model.base.BaseScimResource;
+import com.iamgusto.users.model.BaseScimResource;
 import java.util.List;
 import java.util.Objects;
 
