@@ -18,17 +18,14 @@ import javax.transaction.Transactional;
 @ApplicationScoped
 public class Provisioner {
 
-  @Inject
-  ApplicationSetup writer;
-
-  @Inject
-  ObjectMapper objectMapper;
-
   private final TypeReference<List<Schema>> SchemaTypeRef = new TypeReference<>() {
   };
-
   private final TypeReference<List<ResourceType>> ResourceTypeRef = new TypeReference<>() {
   };
+  @Inject
+  ApplicationSetup writer;
+  @Inject
+  ObjectMapper objectMapper;
 
   @Transactional
   public void provision(Collection<ResourceType> resourceTypesCollection) throws WriteException {

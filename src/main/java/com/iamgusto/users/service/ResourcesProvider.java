@@ -4,7 +4,8 @@ import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ResourcesProvider {
-    public Resources create(String endpoint) {
-        return null;
-    }
+
+  public Resources create(String endpoint) {
+    return null;
+  }
 }

@@ -1,8 +1,8 @@
 package com.iamgusto.users.service;
 
 import com.iamgusto.users.api.ResourceTypeApi.ExistsException;
-import com.iamgusto.users.model.BaseScimResource;
 import com.iamgusto.users.data.ResourceType;
+import com.iamgusto.users.model.BaseScimResource;
 import java.util.List;
 import java.util.Optional;
 

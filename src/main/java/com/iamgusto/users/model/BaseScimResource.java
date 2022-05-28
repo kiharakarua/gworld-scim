@@ -8,7 +8,6 @@ import javax.persistence.PreUpdate;
 
 public abstract class BaseScimResource implements ScimResource {
 
-  @JsonProperty("id")
   protected String id;
 
   protected String externalId;
@@ -45,6 +44,10 @@ public abstract class BaseScimResource implements ScimResource {
     return meta;
   }
 
+  public void setMeta(Meta meta) {
+    this.meta = meta;
+  }
+
   @PrePersist
   public void prePersist() {
     Meta meta1 = getMeta();
@@ -58,10 +61,6 @@ public abstract class BaseScimResource implements ScimResource {
     if (meta1 != null) {
       meta1.setLastModifiedAt(TimeUtils.now());
     }
-  }
-
-  public void setMeta(Meta meta) {
-    this.meta = meta;
   }
 
   @Override

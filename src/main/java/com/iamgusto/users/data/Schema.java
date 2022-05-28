@@ -46,10 +46,6 @@ public class Schema extends BaseScimResource {
     this.id = id;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   @Override
   public String getExternalId() {
     return super.getExternalId();
@@ -63,6 +59,8 @@ public class Schema extends BaseScimResource {
   @Override
   @Embedded
   @AttributeOverrides({
+      @AttributeOverride(name = "resourceType", column = @Column(nullable = false, name = "resource_type")),
+      @AttributeOverride(name = "location", column = @Column(nullable = false, name = "location", columnDefinition = "text")),
       @AttributeOverride(name = "created", column = @Column(nullable = false, name = "created_on")),
       @AttributeOverride(name = "lastModifiedAt", column = @Column(nullable = false, name = "last_modified_at"))
   })
@@ -75,17 +73,13 @@ public class Schema extends BaseScimResource {
     super.setMeta(meta);
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setAttributes(List<Attribute> attributes) {
-    this.attributes = attributes;
-  }
-
   @Column(name = "schema_name")
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Column(name = "description", columnDefinition = "text")
@@ -93,9 +87,17 @@ public class Schema extends BaseScimResource {
     return description;
   }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   @OneToMany(cascade = CascadeType.ALL)
   public List<Attribute> getAttributes() {
     return attributes;
+  }
+
+  public void setAttributes(List<Attribute> attributes) {
+    this.attributes = attributes;
   }
 
   @Override

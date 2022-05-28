@@ -2,8 +2,8 @@ package com.iamgusto.users;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iamgusto.users.data.WriteException;
 import com.iamgusto.users.data.ResourceType;
+import com.iamgusto.users.data.WriteException;
 import com.iamgusto.users.service.Provisioner;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
@@ -19,12 +19,12 @@ import javax.inject.Inject;
 @QuarkusMain
 public class ScimApplication implements QuarkusApplication {
 
+  private final TypeReference<List<ResourceType>> ResourceTypeRef = new TypeReference<>() {
+  };
   @Inject
   Provisioner provisioner;
   @Inject
   ObjectMapper objectMapper;
-  private final TypeReference<List<ResourceType>> ResourceTypeRef = new TypeReference<>() {
-  };
 
   @Override
   public int run(String... args) {

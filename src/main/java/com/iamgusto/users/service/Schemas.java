@@ -1,10 +1,8 @@
 package com.iamgusto.users.service;
 
-import com.iamgusto.users.data.SchemaRepo;
-import com.iamgusto.users.model.Attribute;
 import com.iamgusto.users.data.Schema;
+import com.iamgusto.users.data.SchemaRepo;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;

@@ -18,6 +18,10 @@ public class PatchOp implements ScimMessage {
     return Set.of("urn:ietf:params:scim:api:messages:2.0:PatchOp");
   }
 
+  private static enum Op {
+    add, remove, replace;
+  }
+
   private static class Operation {
 
     private final Op op;
@@ -41,9 +45,5 @@ public class PatchOp implements ScimMessage {
     public JsonNode getValue() {
       return value;
     }
-  }
-
-  private static enum Op {
-    add, remove, replace;
   }
 }

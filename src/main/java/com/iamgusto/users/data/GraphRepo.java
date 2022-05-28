@@ -29,15 +29,14 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 @ApplicationScoped
 public class GraphRepo {
 
+  private final TypeReference<List<Schema>> SchemaTypeRef = new TypeReference<>() {
+  };
   @Inject
   ObjectMapper objectMapper;
-
   @Inject
   @ConfigProperty(name = "bitsy.data.path", defaultValue = "")
   String path;
   private GraphTraversalSource g;
-  private final TypeReference<List<Schema>> SchemaTypeRef = new TypeReference<>() {
-  };
 
   @PostConstruct
   public void init() {

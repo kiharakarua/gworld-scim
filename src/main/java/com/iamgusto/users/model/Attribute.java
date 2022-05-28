@@ -106,92 +106,92 @@ public class Attribute {
     this.name = name;
   }
 
-  public void setType(Type type) {
-    this.type = type;
-  }
-
-  public void setSubAttributes(Set<Attribute> subAttributes) {
-    this.subAttributes = subAttributes;
-  }
-
-  public void setMultiValued(boolean multiValued) {
-    this.multiValued = multiValued;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setRequired(boolean required) {
-    this.required = required;
-  }
-
-  public void setCanonicalValues(List<String> canonicalValues) {
-    this.canonicalValues = canonicalValues;
-  }
-
-  public void setCaseExact(boolean caseExact) {
-    this.caseExact = caseExact;
-  }
-
-  public void setMutability(Mutability mutability) {
-    this.mutability = mutability;
-  }
-
-  public void setReturned(Returned returned) {
-    this.returned = returned;
-  }
-
-  public void setUniqueness(Uniqueness uniqueness) {
-    this.uniqueness = uniqueness;
-  }
-
-  public void setReferenceTypes(List<String> referenceTypes) {
-    this.referenceTypes = referenceTypes;
-  }
-
   public Type getType() {
     return type;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
   }
 
   public Set<Attribute> getSubAttributes() {
     return subAttributes;
   }
 
+  public void setSubAttributes(Set<Attribute> subAttributes) {
+    this.subAttributes = subAttributes;
+  }
+
   public boolean isMultiValued() {
     return multiValued;
+  }
+
+  public void setMultiValued(boolean multiValued) {
+    this.multiValued = multiValued;
   }
 
   public String getDescription() {
     return description;
   }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public boolean isRequired() {
     return required;
+  }
+
+  public void setRequired(boolean required) {
+    this.required = required;
   }
 
   public List<String> getCanonicalValues() {
     return canonicalValues;
   }
 
+  public void setCanonicalValues(List<String> canonicalValues) {
+    this.canonicalValues = canonicalValues;
+  }
+
   public boolean isCaseExact() {
     return caseExact;
+  }
+
+  public void setCaseExact(boolean caseExact) {
+    this.caseExact = caseExact;
   }
 
   public Mutability getMutability() {
     return mutability;
   }
 
+  public void setMutability(Mutability mutability) {
+    this.mutability = mutability;
+  }
+
   public Returned getReturned() {
     return returned;
+  }
+
+  public void setReturned(Returned returned) {
+    this.returned = returned;
   }
 
   public Uniqueness getUniqueness() {
     return uniqueness;
   }
 
+  public void setUniqueness(Uniqueness uniqueness) {
+    this.uniqueness = uniqueness;
+  }
+
   public List<String> getReferenceTypes() {
     return referenceTypes;
+  }
+
+  public void setReferenceTypes(List<String> referenceTypes) {
+    this.referenceTypes = referenceTypes;
   }
 
   public static enum Type {

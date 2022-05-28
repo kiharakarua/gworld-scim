@@ -22,14 +22,14 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class ApplicationSetup {
 
+  private final TypeReference<List<Schema>> SchemaTypeRef = new TypeReference<>() {
+  };
   @Inject
   SchemaRepo schemaRepo;
   @Inject
   ResourceTypeRepo resourceTypeRepo;
   @Inject
   ObjectMapper objectMapper;
-  private final TypeReference<List<Schema>> SchemaTypeRef = new TypeReference<>() {
-  };
   private List<Schema> serviceSchemas;
 
   @PostConstruct
@@ -55,19 +55,6 @@ public class ApplicationSetup {
     }
   }
 
-  private Map<Object, Object> toMap(BaseScimResource schema) {
-    Map<Object, Object> map = new HashMap<>(
-        objectMapper.convertValue(schema, new TypeReference<Map<String, Object>>() {
-        }));
-    map.replaceAll((s, o) -> {
-      if (o == null) {
-        return "";
-      }
-      return o;
-    });
-    return map;
-  }
-
   public void markAsInit() {
   }
 
@@ -79,14 +66,4 @@ public class ApplicationSetup {
     resourceTypeRepo.persist(resourceTypes);
   }
 
-  private <T extends BaseScimResource> T updateMetaCreation(T resourceType) {
-    Meta meta;
-    if ((meta = resourceType.getMeta()) == null) {
-      meta = new Meta("Schema", "/v2/Schemas/" + resourceType.getId());
-    }
-    meta.setCreated(TimeUtils.now());
-    meta.setLastModifiedAt(TimeUtils.now());
-    resourceType.setMeta(meta);
-    return resourceType;
-  }
 }

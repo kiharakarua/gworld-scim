@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -28,11 +30,11 @@ public class ResourceType extends BaseScimResource {
   private String endpoint;
 
   //URI
-  private String schema;
+  private Schema schema;
 
   private List<SchemaExtension> schemaExtensions;
 
-  public ResourceType(String name, String description, String endpoint, String schema,
+  public ResourceType(String name, String description, String endpoint, Schema schema,
       List<SchemaExtension> schemaExtensions, Meta meta) {
     super(name, meta);
     this.name = name;
@@ -46,37 +48,24 @@ public class ResourceType extends BaseScimResource {
 
   }
 
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setEndpoint(String endpoint) {
-    this.endpoint = endpoint;
-  }
-
-  public void setSchema(String schema) {
-    this.schema = schema;
-  }
-
-  public void setSchemaExtensions(
-      List<SchemaExtension> schemaExtension) {
-    this.schemaExtensions = schemaExtension;
-  }
-
   @Id
   @Column(name = "resource_type_name")
   public String getName() {
     return name;
   }
 
-  @Column(name = "resource_type_schema")
-  public String getSchema() {
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @ManyToOne
+  @JoinColumn(name = "resource_type_schema", referencedColumnName = "id")
+  public Schema getSchema() {
     return schema;
+  }
+
+  public void setSchema(Schema schema) {
+    this.schema = schema;
   }
 
   @Column(name = "description", columnDefinition = "text")
@@ -84,14 +73,26 @@ public class ResourceType extends BaseScimResource {
     return description;
   }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   @Column(name = "endpoint")
   public String getEndpoint() {
     return endpoint;
   }
 
+  public void setEndpoint(String endpoint) {
+    this.endpoint = endpoint;
+  }
+
   @OneToMany(cascade = CascadeType.ALL)
   public List<SchemaExtension> getSchemaExtensions() {
     return schemaExtensions;
+  }
+
+  public void setSchemaExtensions(List<SchemaExtension> schemaExtension) {
+    this.schemaExtensions = schemaExtension;
   }
 
   @Override
@@ -103,6 +104,8 @@ public class ResourceType extends BaseScimResource {
   @Override
   @Embedded
   @AttributeOverrides({
+      @AttributeOverride(name = "resourceType", column = @Column(nullable = false, name = "resource_type")),
+      @AttributeOverride(name = "location", column = @Column(nullable = false, name = "location", columnDefinition = "text")),
       @AttributeOverride(name = "created", column = @Column(nullable = false, name = "created_on")),
       @AttributeOverride(name = "lastModifiedAt", column = @Column(nullable = false, name = "last_modified_at"))
   })
@@ -145,15 +148,16 @@ public class ResourceType extends BaseScimResource {
     @Column(name = "id")
     public Long id;
     //URI
-    @Column(name = "schema_uri")
-    private String schema;
+    @ManyToOne()
+    @JoinColumn(name = "schema_uri")
+    private Schema schema;
     @Column(name = "required")
     private boolean required;
 
     public SchemaExtension() {
     }
 
-    public SchemaExtension(String schema, boolean required) {
+    public SchemaExtension(Schema schema, boolean required) {
       this.schema = schema;
       this.required = required;
     }
@@ -166,20 +170,20 @@ public class ResourceType extends BaseScimResource {
       this.id = id;
     }
 
-    public void setSchema(String schema) {
-      this.schema = schema;
-    }
-
-    public void setRequired(boolean required) {
-      this.required = required;
-    }
-
-    public String getSchema() {
+    public Schema getSchema() {
       return schema;
+    }
+
+    public void setSchema(Schema schema) {
+      this.schema = schema;
     }
 
     public boolean isRequired() {
       return required;
+    }
+
+    public void setRequired(boolean required) {
+      this.required = required;
     }
 
     @Override
